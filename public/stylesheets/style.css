@@ -1,0 +1,56 @@
+.cart_container {
+    @include 'cartStyle.css'
+}
+
+.outer {
+    position: relative;
+    background: #fcb103;
+    height: 250px;
+    width: 550px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+img {
+    position: absolute;
+    top: 0px;
+    right: -200px;
+    z-index: 0;
+    animation-delay: 0.5s;
+}
+
+.content {
+    animation-delay: 0.3s;
+    position: absolute;
+    left: 20px;
+    z-index: 3
+}
+
+h4 {
+    color: #111;
+    font-weight: bold;
+}
+
+p#desc {
+    width: 280px;
+    font-size: 13px;
+    line-height: 1.4;
+    color: red;
+    margin: 20px 0;
+}
+
+.bg {
+    display: inline-block;
+    color: #fff;
+    background: cornflowerblue;
+    padding: 5px 10px;
+    border-radius: 50px;
+    font-size: .7em;
+}
+.button {
+    width: fit-content;
+    height: fit-content;
+    margin-top: 10px;
+}

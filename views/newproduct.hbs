@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Add Product - Online Shop</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="icon" href="images/icon.png">
+</head>
+
+<body style="background-position: 0 -60px; background-color: #FEFBEA;">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+        <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <a href="/"><img src="/images/icon.png" style="width: 50px; height: 50px; position: absolute; left: 600px; top: 15px"></a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/team">Team</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contacts">Contacts</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <section class="py-5 mt-5">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-md-8 col-xl-6 text-center mx-auto">
+                    <h2 class="fw-bold">Add New Product</h2>
+                </div>
+            </div>
+            <div class="row d-flex justify-content-center">
+                <div class="col-md-6 col-xl-4">
+                    <div>
+                        <form class="p-3 p-xl-4" method="post" action="/newproduct" enctype="multipart/form-data">
+                            <div class="mb-3"><input class="form-control" type="text" id="title" name="title" placeholder="Title"></div>
+                            <div class="mb-3"><input class="form-control" type="number" id="price" name="price" placeholder="price"></div>
+                            <div class="mb-3"><input class="form-control" type="file" id="image" name="image" accept="image/png, image/jpeg"></div>
+                            <div class="mb-3"><textarea class="form-control" id="description" name="description" rows="6" placeholder="Description"></textarea></div>
+                            <div><button class="btn btn-primary shadow d-block w-100" type="submit">Add</button></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-primary-gradient"></footer>
+    <script src="js/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="js/bs-init.js"></script>
+    <script src="js/bold-and-bright.js"></script>
+</body>
+
+</html>

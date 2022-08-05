@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Product - Online Shop</title>
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.reflowhq.com/v1/toolkit.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="icon" href="images/icon.png">
+</head>
+
+<body style="background-color: #FEFBEA;">
+<nav class="navbar navbar-light navbar-expand-md fixed-top navbar-shrink py-3" id="mainNav">
+    <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+        <div class="collapse navbar-collapse" id="navcol-1">
+            <a href="/"><img src="/images/icon.png" style="width: 50px; height: 50px; position: absolute; left: 600px; top: 15px"></a>
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+                {{{cartDiv}}}
+                <li class="nav-item"><a class="nav-link" href="/team">Team</a></li>
+                <li class="nav-item"><a class="nav-link" href="/contacts">Contacts</a></li>
+                <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+                {{{logDiv}}}
+                {{{adminDiv}}}
+            </ul>
+        </div>
+    </div>
+</nav>
+<section class="py-5 mt-5">
+    <div class="container py-5">
+        <div class="card" style="background-color: #FEFBEA;">
+            <img src="data:image/bmp;base64,{{imgBitmap}}" style="width:130px; height: 200px;">
+            <h1>{{title}}</h1>
+            <p class="price">{{price}}$</p>
+            <p>{{description}}</p>
+            <p><div class="button"><form action="/cart" method="post"><input type="hidden" name="productId" value="{{productId}}"><button type="submit" {{{btn_dis}}}>ADD TO CART</button></form></div></p>
+            {{{removeDiv}}}
+        </div>
+    </div>
+</section>
+<footer class="bg-primary-gradient"></footer>
+<script src="js/jquery.min.js"></script>
+<script src="bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.reflowhq.com/v1/toolkit.min.js"></script>
+<script src="js/bs-init.js"></script>
+<script src="js/bold-and-bright.js"></script>
+</body>
+
+</html>
