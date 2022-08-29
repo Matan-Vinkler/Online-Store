@@ -35,7 +35,8 @@ router.get('/checkout', function(req, res, next) {
     onValue(ref(database, "users/" + uid), (snapshot) => {
         if(snapshot.exists()) {
             let adminDiv = "";
-            if(uid == "JRPN9GGBYCeeKigQ1MM0QjLf4pR2") {
+            const admin = snapshot.val().admin;
+            if(admin) {
                 adminDiv = '<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>';
             }
 

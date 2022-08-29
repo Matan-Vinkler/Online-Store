@@ -33,59 +33,77 @@ router.get("/user", (req, res, next) => {
     const uid = req.cookies.UID;
     const requestedUID = req.query.id;
 
-    onValue(ref(database, "users/" + requestedUID), (snapshot) => {
-        if(snapshot.exists() && uid == "JRPN9GGBYCeeKigQ1MM0QjLf4pR2") {
-            let titleList = "", priceList = "", amountList = "";
-            let titleList2 = "", priceList2 = "", amountList2 = "";
-            let totalPrice = 0;
+    onValue(ref(database, "users/" + uid), (snapshot) => {
+        if (snapshot.exists() && snapshot.val().admin) {
+            onValue(ref(database, "users/" + requestedUID), (snapshot) => {
+                if (snapshot.exists() && uid == "JRPN9GGBYCeeKigQ1MM0QjLf4pR2") {
+                    let titleList = "", priceList = "", amountList = "";
+                    let titleList2 = "", priceList2 = "", amountList2 = "";
+                    let totalPrice = 0;
 
-            let email = snapshot.val().email;
-            let creditID = snapshot.val().creditID;
-            let validDate = snapshot.val().validDate;
-            let ccv = snapshot.val().ccv;
+                    let email = snapshot.val().email;
+                    let creditID = snapshot.val().creditID;
+                    let validDate = snapshot.val().validDate;
+                    let ccv = snapshot.val().ccv;
 
-            let cart = snapshot.val().cart;
-            let purchases = snapshot.val().purchases;
+                    let cart = snapshot.val().cart;
+                    let purchases = snapshot.val().purchases;
 
-            if(!cart) cart = [];
-            if(!purchases) purchases = [];
+                    if (!cart) cart = [];
+                    if (!purchases) purchases = [];
 
-            onValue(ref(database, "products/"), (snapshots) => {
-                for(let item_ in snapshots.val()) {
-                    let amount = includes(cart, item_);
-                    if(amount != 0) {
-                        let item = snapshots.val()[item_];
+                    onValue(ref(database, "products/"), (snapshots) => {
+                        for (let item_ in snapshots.val()) {
+                            let amount = includes(cart, item_);
+                            if (amount != 0) {
+                                let item = snapshots.val()[item_];
 
-                        let title = item.title;
-                        let price = item.price * amount;
+                                let title = item.title;
+                                let price = item.price * amount;
 
-                        titleList += `<div class="cart_item_text">${title}</div>`;
-                        priceList += `<div class="cart_item_text">${price}$</div>`;
-                        amountList += `<div class="cart_item_text">${amount}</div>`;
+                                titleList += `<div class="cart_item_text">${title}</div>`;
+                                priceList += `<div class="cart_item_text">${price}$</div>`;
+                                amountList += `<div class="cart_item_text">${amount}</div>`;
 
-                        totalPrice += price;
-                    }
+                                totalPrice += price;
+                            }
 
-                    let amount2 = includes(purchases, item_);
-                    if(amount2 != 0) {
-                        let item = snapshots.val()[item_];
+                            let amount2 = includes(purchases, item_);
+                            if (amount2 != 0) {
+                                let item = snapshots.val()[item_];
 
-                        let title = item.title;
-                        let price = item.price * amount2;
+                                let title = item.title;
+                                let price = item.price * amount2;
 
-                        titleList2 += `<div class="cart_item_text">${title}</div>`;
-                        priceList2 += `<div class="cart_item_text">${price}$</div>`;
-                        amountList2 += `<div class="cart_item_text">${amount2}</div>`;
-                    }
+                                titleList2 += `<div class="cart_item_text">${title}</div>`;
+                                priceList2 += `<div class="cart_item_text">${price}$</div>`;
+                                amountList2 += `<div class="cart_item_text">${amount2}</div>`;
+                            }
+                        }
+
+                        res.render("user", {
+                            email,
+                            creditID,
+                            validDate,
+                            ccv,
+                            titleList,
+                            amountList,
+                            priceList,
+                            totalPrice,
+                            titleList2,
+                            amountList2,
+                            priceList2
+                        });
+                    }, {onlyOnce: true});
+                } else {
+                    res.redirect("/");
                 }
-
-                res.render("user", {email, creditID, validDate, ccv, titleList, amountList, priceList, totalPrice, titleList2, amountList2, priceList2});
-            }, { onlyOnce: true });
+            }, {onlyOnce: true});
         }
         else {
             res.redirect("/");
         }
-    }, { onlyOnce: true });
+    }, {onlyOnce: true });
 });
 
 module.exports = router;

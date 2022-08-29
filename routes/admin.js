@@ -23,7 +23,7 @@ router.get('/admin', function(req, res, next) {
     const searchVal = req.query.search;
 
     onValue(ref(database, "users/" + uid), (snapshot) => {
-        if(snapshot.exists() && uid == "JRPN9GGBYCeeKigQ1MM0QjLf4pR2") {
+        if(snapshot.exists() && snapshot.val().admin) {
             onValue(ref(database, "users"), (snapshots) => {
                 let userList = "";
 

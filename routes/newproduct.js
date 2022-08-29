@@ -36,7 +36,7 @@ const upload = multer({storage: storage });
 router.get("/newproduct", (req, res, next) => {
    const uid = req.cookies.UID;
    onValue(ref(database, "users/" + uid), (snapshot) => {
-      if(snapshot.exists() && uid == "JRPN9GGBYCeeKigQ1MM0QjLf4pR2") {
+      if(snapshot.exists() && snapshot.val().admin) {
          res.render("newproduct");
       }
       else {

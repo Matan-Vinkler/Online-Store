@@ -30,7 +30,8 @@ router.get('/about', function(req, res, next) {
         let logDiv, cartDiv, adminDiv = "";
 
         if(snapshot.exists()) {
-            if(uid == "JRPN9GGBYCeeKigQ1MM0QjLf4pR2") {
+            const admin = snapshot.val().admin;
+            if(admin) {
                 adminDiv = _adminDiv;
             }
 

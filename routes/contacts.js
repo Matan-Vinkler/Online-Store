@@ -29,7 +29,8 @@ router.get('/contacts', function(req, res, next) {
         let logDiv, cartDiv, adminDiv = "";
 
         if(snapshot.exists()) {
-            if(uid == "JRPN9GGBYCeeKigQ1MM0QjLf4pR2") {
+            const admin = snapshot.val().admin;
+            if(admin) {
                 adminDiv = '<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>';
             }
 
