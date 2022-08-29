@@ -54,11 +54,11 @@ router.get("/user", (req, res, next) => {
 
                     onValue(ref(database, "products/"), (snapshots) => {
                         for (let item_ in snapshots.val()) {
+                            let item = snapshots.val()[item_];
+                            let title = item.title;
+
                             let amount = includes(cart, item_);
                             if (amount != 0) {
-                                let item = snapshots.val()[item_];
-
-                                let title = item.title;
                                 let price = item.price * amount;
 
                                 titleList += `<div class="cart_item_text">${title}</div>`;
@@ -70,9 +70,6 @@ router.get("/user", (req, res, next) => {
 
                             let amount2 = includes(purchases, item_);
                             if (amount2 != 0) {
-                                let item = snapshots.val()[item_];
-
-                                let title = item.title;
                                 let price = item.price * amount2;
 
                                 titleList2 += `<div class="cart_item_text">${title}</div>`;
