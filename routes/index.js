@@ -4,6 +4,7 @@ const router = express.Router();
 const { initializeApp } = require("firebase/app");
 const { getDatabase, ref, onValue } = require("firebase/database");
 
+
 const firebaseConfig = {
   apiKey: "AIzaSyA-_d9ItRwfu8gkJEfDNOQ4THWuyVAhWnA",
   authDomain: "online-store-7dbdb.firebaseapp.com",
@@ -20,7 +21,7 @@ const database = getDatabase(_app_);
 
 const loginRegDiv = '<li class="nav-item"><a class="nav-link" href="/login">Log in</a></li><li class="nav-item"><a class="nav-link" href="/signup">Sign up</a></li>';
 const logoutDiv = '<li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>';
-const _cartDiv = '<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>';
+const _cartDiv = '<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li> <li class="nav-item"><a class="nav-link" href="purchases">Purchases</a></li>';
 const _adminDiv = '<li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>';
 
 router.get('/', function(req, res, next) {
@@ -58,7 +59,7 @@ router.get('/', function(req, res, next) {
         let imgBitmap = childData.image;
         let id = childKey;
 
-        if(!search || search == "" || title.startsWith(search)) {
+        if(!search || search == "" || title.toLowerCase().startsWith(search.toLowerCase()) || description.toLowerCase().startsWith(search.toLowerCase())) {
           productsDiv += `<div class="outer"><div class="content animated fadeInLeft"><a href="product?id=${id}"><h4>${title}</h4><p id="desc">${description}</p><a>${price}$</a><div class="button"><form action="/cart" method="post"><input type="hidden" name="productId" value="${id}"><button type="submit" ${btn_dis}>ADD TO CART</button></form></div><img src="data:image/bmp;base64,${imgBitmap}" width="100px" class="animated fadeInRight"></div></div>`;
         }
       });

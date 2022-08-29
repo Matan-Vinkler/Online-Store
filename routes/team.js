@@ -20,7 +20,7 @@ const database = getDatabase(_app_);
 
 const loginRegDiv = '<li class="nav-item"><a class="nav-link" href="/login">Log in</a></li><li class="nav-item"><a class="nav-link" href="/signup">Sign up</a></li>';
 const logoutDiv = '<li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>';
-const _cartDiv = '<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li>';
+const _cartDiv = '<li class="nav-item"><a class="nav-link" href="/cart">Cart</a></li> <li class="nav-item"><a class="nav-link" href="purchases">Purchases</a></li>';
 
 router.get('/team', function(req, res, next) {
     const uid = req.cookies.UID;

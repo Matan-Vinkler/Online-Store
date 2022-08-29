@@ -57,7 +57,7 @@ router.post('/login', (req, res, next) => {
     }).catch((error) => {
         console.log(error.message);
         res.status(404);
-        res.render("error", error);
+        res.render("login", { error: '<script> alert("Login Failed. User doesn\'t exist."); </script>' });
     })
 })
 
